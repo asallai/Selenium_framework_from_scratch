@@ -1,2 +1,3 @@
-# Selenium_framework_from_scratch
+# Selenium framework from scratch
 Tamas Tarodi's mentoring training
+ 
