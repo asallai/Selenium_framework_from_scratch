@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 public class FirstTest extends UiBaseTest {
 
     @Test
-    public void firstTest() throws InterruptedException {
-        driver.manage().window().maximize();
-        driver.navigate().to("https://www.google.com");
-        Thread.sleep(4000);
+    public void firstTest() {
+        driver.navigate().to("https://www.ryanair.com/us/en");
+        homePage.clickAgreeButton();
     }
 }

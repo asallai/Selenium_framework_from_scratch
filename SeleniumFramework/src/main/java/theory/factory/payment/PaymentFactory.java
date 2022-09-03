@@ -6,8 +6,7 @@ public class PaymentFactory {
 
         if(payMethod == "apple") {
             return new ApplePay();
-        } else
-        if(payMethod == "paypal") {
+        } else if(payMethod == "paypal") {
             return new PayPalPay();
         } else {
             return new RevolutPay();

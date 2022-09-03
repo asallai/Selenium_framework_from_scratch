@@ -8,8 +8,7 @@ public class ChocolateMuffin implements Muffin {
     }
 
     @Override
-    public void bakeMuffin() {
-        System.out.println("Bake Chocolate muffin");
+    public void bakeMuffin(int degree) {
+        System.out.println("Bake Chocolate muffin " + degree + " celsius degree");
     }
-
 }
