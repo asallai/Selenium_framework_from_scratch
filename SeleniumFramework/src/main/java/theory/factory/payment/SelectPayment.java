@@ -2,8 +2,8 @@ package theory.factory.payment;
 
 public class SelectPayment {
 
-    public void choosePayment() {
+    public void selectPayment() {
         PaymentFactory paymentFactory = new PaymentFactory();
-        paymentFactory.selectPayment("apple");
+        paymentFactory.choosePayment("apple");
     }
 }

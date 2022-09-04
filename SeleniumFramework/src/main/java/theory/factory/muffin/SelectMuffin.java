@@ -2,9 +2,9 @@ package theory.factory.muffin;
 
 public class SelectMuffin {
 
-    public void chooseMuffin() {
+    public void selectMuffin() {
         MuffinFactory muffinFactory = new MuffinFactory();
-        muffinFactory.selectMuffin("chocolate");
+        muffinFactory.chooseMuffin("chocolate");
     }
 
 }

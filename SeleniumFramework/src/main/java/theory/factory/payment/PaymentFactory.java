@@ -2,7 +2,7 @@ package theory.factory.payment;
 
 public class PaymentFactory {
 
-    public Payable selectPayment(String payMethod) {
+    public Payable choosePayment(String payMethod) {
 
         if(payMethod == "apple") {
             return new ApplePay();
