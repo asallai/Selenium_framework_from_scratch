@@ -5,8 +5,18 @@ import org.junit.jupiter.api.Test;
 public class FirstTest extends UiBaseTest {
 
     @Test
-    public void firstTest() {
-        driver.navigate().to("https://www.ryanair.com/us/en");
-        homePage.clickAgreeButton();
+    public void firstTest() throws InterruptedException {
+        homePage
+                .validateTitle()
+                .clickAgreeButton()
+                .fillFromCity("Budapest")
+                .chooseCity("BUD")
+                .fillToCity("Copenhagen")
+                .chooseCity("CPH")
+                .chooseDate("2023-08-28")
+                .chooseDate("2023-08-30")
+                .clickSearchButton();
+        Thread.sleep(5000);
+
     }
 }

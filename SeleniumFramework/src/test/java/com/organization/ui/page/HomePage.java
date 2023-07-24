@@ -1,16 +1,13 @@
 package com.organization.ui.page;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage {
+public class HomePage extends WebDriverWrapper {
 
     public WebDriver driver;
-
-    public HomePage(WebDriver webDriver) {
-        this.driver = webDriver;
-    }
 
      /*
       Some examples:
@@ -34,13 +31,65 @@ public class HomePage {
         Search button:
            //button[@data-ref='flight-search-widget__cta']
            .flight-search-widget__start-search.ng-tns-c54-3.ry-button--gradient-yellow
+           button[aria-label*='earch']
+           //button[contains(@aria-label, 'earch')]
+           //span[contains(text(), 'Search')]/ancestor::button[1]
      */
 
-    private static final By AGREE_BUTTON = By.xpath("//button[contains(text(), 'Yes, I agree')]");
+    public String homePageUrl = "https://www.ryanair.com/us/en";
+    private String cityLocator = "//span[@data-id='CITY']";
+    private String dateLocator = "//div[@data-id='DATE']";
 
-    public void clickAgreeButton() {
+    private static final By AGREE_BUTTON = By.xpath("//button[contains(text(), 'Yes, I agree')]");
+    private static final By DEPARTURE_FIELD = By.id("input-button__departure");
+    private static final By DESTINATION_FIELD = By.id("input-button__destination");
+    private static final By SEARCH_BUTTON = By.cssSelector("button[aria-label*='earch']");
+
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
+        this.driver = webDriver;
+    }
+
+    public HomePage validateTitle() {
+        Assertions.assertEquals("Official Ryanair website | Cheap flights in Europe | Ryanair", driver.getTitle());
+        return this;
+    }
+
+    public HomePage clickAgreeButton() {
         WebElement element = driver.findElement(AGREE_BUTTON);
         element.click();
+        return this;
+    }
+
+    public HomePage fillFromCity(String city) {
+        click(DEPARTURE_FIELD);
+        WebElement element = driver.findElement(DEPARTURE_FIELD);
+        element.clear();
+        element.sendKeys(city);
+        return this;
+    }
+
+    public HomePage fillToCity(String city) {
+        click(DESTINATION_FIELD);
+        WebElement element = driver.findElement(DESTINATION_FIELD);
+        element.clear();
+        element.sendKeys(city);
+        return this;
+    }
+
+    public HomePage chooseCity(String city) {
+        click(By.xpath(cityLocator.replace("CITY", city)));
+        return this;
+    }
+
+    public HomePage chooseDate(String date) {
+        click(By.xpath(dateLocator.replace("DATE", date)));
+        return this;
+    }
+
+    public HomePage clickSearchButton() {
+        click(SEARCH_BUTTON);
+        return this;
     }
 
 }
