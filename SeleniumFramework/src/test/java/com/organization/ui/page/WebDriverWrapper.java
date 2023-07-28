@@ -46,6 +46,15 @@ public class WebDriverWrapper {
         return isInVisibility;
     }
 
+    public Boolean checkTitle(String title) {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(TIMEOUT))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        Boolean isTitleCorrect = wait.until(ExpectedConditions.titleIs(title));
+        return isTitleCorrect;
+    }
+
     public void click(WebElement element) {
         element.click();
     }

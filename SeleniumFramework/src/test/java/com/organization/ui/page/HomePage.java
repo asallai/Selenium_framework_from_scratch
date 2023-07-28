@@ -5,38 +5,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage extends WebDriverWrapper {
-
-    public WebDriver driver;
-
-     /*
-      Some examples:
-       xpath
+    /*
+      XPath examples:
         //input[@id="input-button__departure"]/ancestor::div[2]/fsw-input-button//input/ancestor::fsw-input-button
-      css
+        //button[contains(@aria-label, 'Search')]                    tag value
+        //span[contains(text(), 'Search')]/ancestor::button[1]       element value
+      CSS examples:
         #input-button__departure
         .input-button__input.ng-star-inserted
         html > head > base
         html > body span._container.icon-ie-160-32
         html > body input[placeholder='Departure']
+        button[aria-label*='Search']
      */
 
-    /*
-        Departure field:
-           //input[@id='input-button__departure']
-           #input-button__departure
-        Destination field:
-           //input[@id='input-button__destination']
-           #input-button__destination
-        Search button:
-           //button[@data-ref='flight-search-widget__cta']
-           .flight-search-widget__start-search.ng-tns-c54-3.ry-button--gradient-yellow
-           button[aria-label*='earch']
-           //button[contains(@aria-label, 'earch')]
-           //span[contains(text(), 'Search')]/ancestor::button[1]
-     */
+public class HomePage extends WebDriverWrapper {
+
+    public WebDriver driver;
 
     public String homePageUrl = "https://www.ryanair.com/us/en";
+
     private String cityLocator = "//span[@data-id='CITY']";
     private String dateLocator = "//div[@data-id='DATE']";
 
@@ -45,9 +33,9 @@ public class HomePage extends WebDriverWrapper {
     private static final By DESTINATION_FIELD = By.id("input-button__destination");
     private static final By SEARCH_BUTTON = By.cssSelector("button[aria-label*='earch']");
 
-    public HomePage(WebDriver webDriver) {
-        super(webDriver);
-        this.driver = webDriver;
+    public HomePage(WebDriver driver) {
+        super(driver);
+        this.driver = driver;
     }
 
     public HomePage validateTitle() {
@@ -87,9 +75,9 @@ public class HomePage extends WebDriverWrapper {
         return this;
     }
 
-    public HomePage clickSearchButton() {
+    public SearchPage clickSearchButton() {
         click(SEARCH_BUTTON);
-        return this;
+        return new SearchPage(driver);
     }
 
 }
