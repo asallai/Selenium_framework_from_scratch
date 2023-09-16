@@ -8,10 +8,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class WebDriverFactory {
 
     public WebDriver getWebDriver(String driver) {
-        if(driver == "firefox") {
+        if(driver.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             return new FirefoxDriver();
-        } else {
+        }else{
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
         }
